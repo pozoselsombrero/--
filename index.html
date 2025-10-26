@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pozos El Sombrero</title>
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen">
+
+    <div class="relative flex flex-col items-center z-10">
+
+        <section id="oferta" class="w-full flex flex-col items-center bg-transparent text-white">
+
+            <div id="video-wrapper" class="video-container">
+                <video id="videoPlayer"
+                       preload="auto"
+                       poster="https://placehold.co/700x400/1f2937/ffffff?text=Cargando+Video+Destacado">
+                    <source src="video.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+
+                <div id="video-placeholder" class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center text-white bg-gray-800/90 transition-opacity duration-500">
+                    <span class="text-white text-xl font-bold mb-2">¡Comienza a Fabricar Hoy!</span>
+                    <p class="text-sm text-gray-400">Clic para ver el video completo de la oferta.</p>
+                </div>
+
+                <div id="controls">
+                    <div id="timeline">
+                        <div id="progress-bar"></div>
+                    </div>
+
+                    <div class="flex justify-between items-center text-sm">
+                        <button id="play-pause-btn" title="Reproducir/Pausar">
+                            <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor" style="display: block;">
+                                <path d="M6 3l15 9-15 9V3z"/>
+                            </svg>
+                            <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
+                                <path d="M6 3h4v18H6zM14 3h4v18h-4z"/>
+                            </svg>
+                        </button>
+
+                        <div class="flex items-center space-x-2">
+                            <svg id="volume-icon" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11 5L6 9H2v6h4l5 4V5zM19.07 15.07c.94-.94 1.53-2.24 1.53-3.57 0-1.33-.59-2.63-1.53-3.57L17.65 9.35c.57.57.92 1.34.92 2.3s-.35 1.73-.92 2.3l1.42 1.42zM15.5 12c0 .87-.36 1.68-.97 2.26L13.1 13.5c.38-.38.59-.88.59-1.5s-.21-1.12-.59-1.5l1.43-1.43c.61.58.97 1.39.97 2.26z"/>
+                            </svg>
+                            <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full max-w-xl text-center mt-4 px-4">
+
+                <h1 class="text-2xl sm:text-3xl font-extrabold leading-tight text-white">
+                Kit del Fabricante Inteligente
+                </h1>
+
+                <p class="text-sm sm:text-base font-light text-gray-300 mt-1 mb-4">
+                     Construye tu Perforadora 15 días y Consigue tu Primer Cliente Pagado en menos de 45 días
+                </p>
+
+                <div class="space-y-4 pt-4">
+
+                    <div class="flex flex-col items-center justify-center space-y-1">
+
+                        <div class="flex items-center space-x-4 mb-2">
+                            <p class="text-2xl text-white line-through opacity-50">
+                                $257
+                            </p>
+
+                            <div class="inline-flex items-center justify-center h-8 px-3 py-1 bg-red-500 text-white text-sm font-bold border border-red-700 btn-base">
+                                <span>53% OFF</span>
+                            </div>
+                        </div>
+
+                        <p class="text-5xl sm:text-6xl font-black text-white leading-none">
+                            $119
+                        </p>
+
+                        <div class="flex items-baseline space-x-1 mt-2">
+                            <p class="text-sm font-semibold text-white">
+                                Te Ahorras
+                            </p>
+                            <p class="text-lg font-extrabold text-green-500">
+                                $138
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button id="buy-now-btn" class="w-full py-3 mt-6 btn-base bg-white text-black border-white tracking-widest text-lg btn-main-offer">
+                    COMPRAR AHORA
+                </button>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center space-x-0 sm:space-x-1 mt-3 text-amber-500 pb-16">
+                    <p class="text-sm font-medium">
+                        <b>8 Compradores</b> hasta hoy
+                    </p>
+                    <p id="current-datetime" class="text-sm font-medium"></p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="testimonios" class="w-full bg-black/70 py-12 px-4 border-t border-b border-gray-700/50">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-extrabold text-center text-white mb-8">
+                    Esto Dicen del Kit
+                </h2>
+
+                <div class="testimonial-container flex space-x-6 md:space-x-0 md:grid md:grid-cols-3 md:gap-8 justify-start pb-4">
+
+                    <div class="testimonial-card rounded-lg shadow-xl transition-shadow">
+                        <div class="testimonial-bg testimonio-bg-1"></div>
+                        
+                        <div class="testimonial-overlay">
+                            
+                            <div class="flex items-start w-full mb-4">
+                                <img src="testimonio2.jpg" 
+                                     onerror="this.onerror=null;this.src='https://placehold.co/60x60/374151/ffffff?text=JP'" 
+                                     alt="Ricado23_1993" 
+                                     class="w-12 h-12 rounded-full mr-4 border-2 border-amber-500/50 object-cover flex-shrink-0">
+                                
+                                <div class="flex flex-col items-start">
+                                    <div class="flex mb-1">
+                                        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    </div>
+                                    <p class="font-bold text-white leading-tight">Ricado23_1993</p>
+                                    <p class="text-xs text-gray-300 leading-tight">México</p>
+                                </div>
+                            </div>
+                            
+                            <p class="italic text-gray-100 text-base">
+                                 "El primer manual me ayudo bastante Miguel pero necesitaba mas lo de como vender y me dio pena al princpio pero los consejos y la informacion si me funcionaron"
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card rounded-lg shadow-xl transition-shadow">
+                        <div class="testimonial-bg testimonio-bg-2"></div>
+                        
+                        <div class="testimonial-overlay">
+                            
+                            <div class="flex items-start w-full mb-4">
+                                <img src="testimonio3.jpg" 
+                                     onerror="this.onerror=null;this.src='https://placehold.co/60x60/374151/ffffff?text=RC'" 
+                                     alt="Avatar Ricardo V. C." 
+                                     class="w-12 h-12 rounded-full mr-4 border-2 border-amber-500/50 object-cover flex-shrink-0">
+                                
+                                <div class="flex flex-col items-start">
+                                    <div class="flex mb-1">
+                                        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    </div>
+                                    <p class="font-bold text-white leading-tight">Yorman López</p>
+                                    <p class="text-xs text-gray-300 leading-tight">Venezuela</p>
+                                </div>
+                            </div>
+
+                            <p class="italic text-gray-100 text-base">
+                                "Qué tal amigo! Oye, muy buen producto. Me encantó y me sirvió todo. Mi esposa y yo estábamos escépticos al principio, pero de verdad que valió la pena."
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card rounded-lg shadow-xl transition-shadow">
+                        <div class="testimonial-bg testimonio-bg-3"></div>
+                        
+                        <div class="testimonial-overlay">
+                            
+                            <div class="flex items-start w-full mb-4">
+                                <img src="testimonio1.jpg" 
+                                     onerror="this.onerror=null;this.src='https://placehold.co/60x60/374151/ffffff?text=AH'" 
+                                     alt="Avatar Ana M. Herrera" 
+                                     class="w-12 h-12 rounded-full mr-4 border-2 border-amber-500/50 object-cover flex-shrink-0">
+                                
+                                <div class="flex flex-col items-start">
+                                    <div class="flex mb-1">
+                                        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="star-icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                        <svg class="star-empty" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                    </div>
+                                    <p class="font-bold text-white leading-tight">_albert21_🎵🔥</p>
+                                    <p class="text-xs text-gray-300 leading-tight">México</p>
+                                </div>
+                            </div>
+
+                            <p class="italic text-gray-100 text-base">
+                                "Compré tu product porque Llevaba cmo 6 meses con lo del taladro porque no conseguia ayuda de nadie. Si lo hubiera comprado ants me ahorraba una buena lana."
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <div id="scarcity-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-0">
+            <div id="scarcity-modal-content" class="bg-black border border-white text-white w-full max-w-sm mx-auto p-6 flex flex-col items-center btn-base animate-fade-in relative">
+                
+                <button id="close-x-btn" class="absolute top-2 right-2 p-2 text-white/70 hover:text-white transition-colors" aria-label="Cerrar ventana emergente">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+
+                <p class="text-6xl font-black text-red-500 mb-6 mt-4">
+                    53% OFF
+                </p>
+
+                <p class="text-center text-sm mb-6 font-light capitalize">
+                    descuento disponible solo para los <span class="font-extrabold text-amber-500">primeros 35 compradores</span> o hasta el 30 de noviembre.
+                </p>
+
+                <div class="flex justify-between w-full mt-2 space-x-4">
+
+                    <button id="close-modal-btn" class="w-1/2 py-3 text-white uppercase text-sm font-extrabold tracking-widest border border-white btn-secondary-close btn-base">
+                        CERRAR
+                    </button>
+
+                    <button id="claim-offer-btn" class="w-1/2 py-3 bg-green-500 text-black uppercase text-sm font-extrabold tracking-widest border border-green-500 btn-base">
+                        APROVECHAR
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="purchase-options-modal" class="hidden fixed inset-0 z-[110] flex items-center justify-center bg-black/80 p-4">
+            <div class="bg-black border border-amber-500 text-white w-full max-w-sm mx-auto p-6 rounded-lg shadow-2xl flex flex-col items-center relative animate-fade-in">
+                
+                <button id="close-purchase-x-btn" class="absolute top-3 right-3 p-1 text-white/80 hover:text-amber-500 transition-colors" aria-label="Cerrar opciones de compra">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-black text-amber-500 mb-2">
+                        ¡Te Felicito!
+                    </h2>
+                    <p class="text-lg font-bold text-white">
+                        Tomaste la mejor dicisión
+                    </p>
+                    <p class="text-sm text-gray-400 mt-2">
+                        Elige tu método de pago. Si no lo ves aquí, contáctame por WhatsApp y lo arreglamos.
+                    </p>
+                </div>
+
+                <div class="space-y-4 w-full flex flex-col items-center">
+                    
+                    <a id="paypal-link" href="#" target="_blank" class="btn-purchase-option btn-paypal-img">
+                        <img id="paypal-img" 
+                             src="paypal.png" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/140x36/fac13c/111111?text=PayPal'"
+                             alt="Pagar con PayPal o Tarjeta" 
+                             title="Pagar con PayPal o Tarjeta de Crédito/Débito">
+                    </a>
+
+                    <a id="whatsapp-link" href="#" target="_blank" class="btn-purchase-option btn-whatsapp-img">
+                        <img id="whatsapp-img" 
+                             src="whatsapp.png" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/140x36/ffffff/111111?text=WhatsApp'"
+                             alt="Contactar por WhatsApp"
+                             title="Pregunta por tu Método de Pago">
+                    </a>
+                </div>
+                
+                <p id="purchase-options-info" class="text-xs text-gray-500 mt-6 text-center">
+Cualquier problema, dificultad o duda que tengas, házmela saber por TikTok o WhatsApp.
+                </p>
+
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </div>
+
+</body>
+</html>
